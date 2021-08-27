@@ -164,7 +164,7 @@ long_docs: Dict[str, str] = {
         Options:
           <b>-s, --stat</b>    Makes `git machete diff` pass `--stat` option to `git diff`, so that only summary (diffstat) is printed.
     """,
-    "discover": """
+    "discover": f"""
         <b>Usage: git machete discover [-C|--checked-out-since=<date>] [-l|--list-commits] [-r|--roots=<branch1>,<branch2>,...] [-y|--yes]</b>
 
         Discovers and displays tree of branch dependencies using a heuristic based on reflogs and asks whether to overwrite the existing definition file with the new discovered tree.
@@ -173,7 +173,7 @@ long_docs: Dict[str, str] = {
 
         Options:
           <b>-C, --checked-out-since=<date></b>   Only consider branches checked out at least once since the given date. <date> can be e.g. `2 weeks ago` or `2020-06-01`, as in `git log --since=<date>`.
-                                           If not present, the date is selected automatically so that around """ + str(DISCOVER_DEFAULT_FRESH_BRANCH_COUNT) + """ branches are included.
+                                           If not present, the date is selected automatically so that around {str(DISCOVER_DEFAULT_FRESH_BRANCH_COUNT)} branches are included.
 
           <b>-l, --list-commits</b>               When printing the discovered tree, additionally lists the messages of commits introduced on each branch (as for `git machete status`).
 
@@ -296,21 +296,6 @@ long_docs: Dict[str, str] = {
         Tabs or any number of spaces can be used as indentation.
         It's only important to be consistent wrt. the sequence of characters used for indentation between all lines.
     """,
-    "go": """
-        <b>Usage: git machete g[o] <direction></b>
-        where <direction> is one of: `d[own]`, `f[irst]`, `l[ast]`, `n[ext]`, `p[rev]`, `r[oot]`, `u[p]`
-
-        Checks out the branch specified by the given direction relative to the current branch:
-        * `down`:    the direct children/downstream branch of the current branch.
-        * `first`:   the first downstream of the root branch of the current branch (like `root` followed by `next`), or the root branch itself if the root has no downstream branches.
-        * `last`:    the last branch in the definition file that has the same root as the current branch; can be the root branch itself if the root has no downstream branches.
-        * `next`:    the direct successor of the current branch in the definition file.
-        * `prev`:    the direct predecessor of the current branch in the definition file.
-        * `root`:    the root of the tree where the current branch is located. Note: this will typically be something like `develop` or `master`, since all branches are usually meant to be ultimately merged to one of those.
-        * `up`:      the direct parent/upstream branch of the current branch.
-
-        Roughly equivalent to `git checkout $(git machete show <direction>)`.
-    """,
     "github": """
         <b>Usage: git machete github <subcommand></b>
         where <subcommand> is one of: `anno-prs`, `create-pr`, `retarget-pr`.
@@ -344,6 +329,21 @@ long_docs: Dict[str, str] = {
         <b>`retarget-pr`:</b>
 
           Sets the base of the current branch's PR to upstream (parent) branch, as seen by git machete (see `git machete show up`).
+    """,
+    "go": """
+        <b>Usage: git machete g[o] <direction></b>
+        where <direction> is one of: `d[own]`, `f[irst]`, `l[ast]`, `n[ext]`, `p[rev]`, `r[oot]`, `u[p]`
+
+        Checks out the branch specified by the given direction relative to the current branch:
+        * `down`:    the direct children/downstream branch of the current branch.
+        * `first`:   the first downstream of the root branch of the current branch (like `root` followed by `next`), or the root branch itself if the root has no downstream branches.
+        * `last`:    the last branch in the definition file that has the same root as the current branch; can be the root branch itself if the root has no downstream branches.
+        * `next`:    the direct successor of the current branch in the definition file.
+        * `prev`:    the direct predecessor of the current branch in the definition file.
+        * `root`:    the root of the tree where the current branch is located. Note: this will typically be something like `develop` or `master`, since all branches are usually meant to be ultimately merged to one of those.
+        * `up`:      the direct parent/upstream branch of the current branch.
+
+        Roughly equivalent to `git checkout $(git machete show <direction>)`.
     """,
     "help": """
         <b>Usage: git machete help [<command>]</b>

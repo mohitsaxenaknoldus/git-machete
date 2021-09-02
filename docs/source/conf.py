@@ -4,6 +4,8 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import re
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -21,8 +23,16 @@ copyright = '2017-2021, Paweł Lipski'
 author = 'Paweł Lipski'
 
 # The full version, including alpha/beta/rc tags
-release = '3.3.0'
 
+
+def get_last_version_from_release_note():
+    with open("../../RELEASE_NOTES.md") as file:
+        text = file.read()
+    version_pattern = re.compile(r"[0-9]\.[0-9]\.[0-9]")
+    return version_pattern.search(text).group()
+
+
+release = get_last_version_from_release_note()
 
 # -- General configuration ---------------------------------------------------
 

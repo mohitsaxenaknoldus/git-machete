@@ -1,5 +1,4 @@
-
-.. _installation:
+.. _completion:
 
 Installing git-machete command line completion
 =======================================

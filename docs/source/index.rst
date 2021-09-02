@@ -5,9 +5,9 @@ Probably the sharpest git repository:
 #. :ref:`description`
 #. :ref:`cli`
 #. :ref:`learning_materials`
-#. :ref:`installation`
+#. :ref:`completion`
 
 .. include:: description.rst
 .. include:: cli.rst
 .. include:: learning_materials.rst
-.. include:: installation.rst
+.. include:: completion.rst

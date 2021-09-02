@@ -1,6 +1,6 @@
 Welcome to git-machete's documentation!
 =======================================
-Probably the sharpest git repository:
+Probably the sharpest git repository organizer & rebase/merge workflow automation tool you've ever seen:
 
 #. :ref:`description`
 #. :ref:`cli`

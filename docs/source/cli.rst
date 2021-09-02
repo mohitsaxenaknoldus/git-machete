@@ -41,9 +41,9 @@ To get help via CLI run:
 
 .. code-block:: shell
 
-    git-machete help
-    git-machete help go
-    git-machete go --help
+    git machete help
+    git machete help go
+    git machete go --help
 
 .. include:: cli_help/add.rst
 .. include:: cli_help/advance.rst

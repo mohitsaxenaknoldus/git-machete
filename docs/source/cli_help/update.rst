@@ -1,3 +1,5 @@
+.. role:: bash(code)
+
 .. _update:
 
 update
@@ -8,11 +10,11 @@ Usage:
 
     git machete update [-f|--fork-point=] [-M|--merge] [-n|--no-edit-merge|--no-interactive-rebase]
 
-Synchronizes the current branch with its upstream (parent) branch either by rebase (default) or by merge (if `--merge` option passed).
+Synchronizes the current branch with its upstream (parent) branch either by rebase (default) or by merge (if :bash:`--merge` option passed).
 
 If updating by rebase, interactively rebases the current branch on the top of its upstream (parent) branch.
-The chunk of the history to be rebased starts at the fork point of the current branch, which by default is inferred automatically, but can also be set explicitly by `--fork-point`.
-See `git machete help fork-point` for more details on meaning of the "fork point".
+The chunk of the history to be rebased starts at the fork point of the current branch, which by default is inferred automatically, but can also be set explicitly by :bash:`--fork-point`.
+See :bash:`git machete help fork-point` for more details on meaning of the "fork point".
 
 If updating by merge, merges the upstream (parent) branch into the current branch.
 
@@ -22,10 +24,10 @@ Options:
 
   -M, --merge                             Update by merge rather than by rebase.
 
-  -n                                      If updating by rebase, equivalent to `--no-interactive-rebase`. If updating by merge, equivalent to `--no-edit-merge`.
+  -n                                      If updating by rebase, equivalent to :bash:`--no-interactive-rebase`. If updating by merge, equivalent to :bash:`--no-edit-merge`.
 
-  --no-edit-merge                         If updating by merge, skip opening the editor for merge commit message while doing `git merge` (i.e. pass `--no-edit` flag to underlying `git merge`).
+  --no-edit-merge                         If updating by merge, skip opening the editor for merge commit message while doing :bash:`git merge` (i.e. pass :bash:`--no-edit` flag to underlying :bash:`git merge`).
                                           Not allowed if updating by rebase.
 
-  --no-interactive-rebase                 If updating by rebase, run `git rebase` in non-interactive mode (without `-i/--interactive` flag).
+  --no-interactive-rebase                 If updating by rebase, run :bash:`git rebase` in non-interactive mode (without :bash:`-i/--interactive` flag).
                                           Not allowed if updating by merge.

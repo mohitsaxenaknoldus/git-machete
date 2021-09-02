@@ -1,11 +1,13 @@
+.. highlight:: console
+
+.. role:: bash(code)
+
 .. _cli:
 
 Command Line Interface
 ======================
 
-.. highlight:: console
-
-When git-machete is installed it is added to your path, so it can be called from command line: `git-machete some_command some_command_options`. git-machete comes with a wide variety of commands and their options and in this site you can find their documentation.
+When git-machete is installed it is added to your path, so it can be called from command line: :bash:`git-machete <command> <options>`. git-machete comes with a wide variety of commands and their options and in this site you can find their documentation.
 
 git-machete commands:
 
@@ -39,9 +41,9 @@ To get help via CLI run:
 
 .. code-block:: shell
 
-    $ git-machete help
-    $ git-machete help go
-    $ git-machete go --help
+    git-machete help
+    git-machete help go
+    git-machete go --help
 
 .. include:: cli_help/add.rst
 .. include:: cli_help/advance.rst

@@ -19,9 +19,9 @@ from git_machete.options import CommandLineOptions
 from git_machete.exceptions import MacheteException, StopTraversal
 from git_machete.docs import short_docs, long_docs
 from git_machete.git_operations import GitContext
-from git_machete.github import GitHubPullRequest, derive_pull_request_by_head, set_base_of_pull_request, is_github_remote_url,\
-    get_parsed_github_remote_url, add_assignees_to_pull_request, add_reviewers_to_pull_request, create_pull_request,\
-    derive_current_user_login, set_milestone_of_pull_request
+from git_machete.github import add_assignees_to_pull_request, add_reviewers_to_pull_request, check_pr_already_created, check_pr_already_created_by_number, create_pull_request, \
+    derive_current_user_login, derive_pull_requests, derive_pull_request_by_head, get_parsed_github_remote_url, GitHubPullRequest, \
+    is_github_remote_url, set_base_of_pull_request, set_milestone_of_pull_request
 from git_machete.constants import AHEAD_OF_REMOTE, BEHIND_REMOTE, BOLD, DIM, DISCOVER_DEFAULT_FRESH_BRANCH_COUNT, \
     DIVERGED_FROM_AND_NEWER_THAN_REMOTE, DIVERGED_FROM_AND_OLDER_THAN_REMOTE, ENDC, GREEN, IN_SYNC_WITH_REMOTE, \
     NO_REMOTES, ORANGE, PICK_FIRST_ROOT, PICK_LAST_ROOT, RED, UNTRACKED, YELLOW
@@ -266,6 +266,7 @@ class MacheteClient:
             else:
                 self.__down_branches[onto] = [b]
             print(fmt(f"Added branch `{b}` onto `{onto}`"))
+            self.managed_branches.append(b)
 
         self.save_definition_file()
 
@@ -1515,6 +1516,84 @@ class MacheteClient:
         self.__branch_defs_by_sha_in_reflog = None
         self.__git.flush_caches()
 
+    def checkout_github_pr(self, pr_no: int) -> None:
+        org: str
+        repo: str
+        remote: str
+        remote, (org, repo) = self.__derive_remote_and_github_org_and_repo()
+        debug('checkout_github_pr', f'organization is {org}, repository is {repo}')
+
+        all_prs: List[GitHubPullRequest] = derive_pull_requests(org, repo)
+        pr: GitHubPullRequest = check_pr_already_created_by_number(pr_no, all_prs)
+
+        if not pr:
+            raise MacheteException(f"PR number {pr_no} is not found in repository {repo}")
+        debug('checkout_github_pr', f'found {pr}')
+
+        current_branch: Optional[str] = self.__git.get_currently_checked_out_branch_or_none()
+        if current_branch == 'PR_' + str(pr.number):
+            self.__git.checkout(pr.head)
+
+        self.__git.fetch_pull_request(remote, pr.number)
+        debug('checkout_github_pr', f'fetched PR into branch PR_{pr}')
+
+        self.__git.fetch_remote(remote)
+
+        path: List[str] = self.get_path(remote, pr.head)
+        upstream_prs: List[GitHubPullRequest] = []
+        if len(path) > 1:
+            for index, branch in enumerate(path):
+                try:
+                    possible_pr: GitHubPullRequest = GitHubPullRequest(0, '', path[index + 1], branch, '')
+                    pr_found = check_pr_already_created(possible_pr, all_prs)
+                    if pr_found and pr_found != pr and pr_found.base != branch:
+                        upstream_prs.append(pr_found)
+                except IndexError:
+                    break
+
+        if upstream_prs:
+            reversed_path = path[::-1]  # need to add from root do down
+            for index, branch in enumerate(reversed_path):
+                if branch not in self.managed_branches:
+                    self.__cli_opts.opt_onto = reversed_path[index - 1]
+                    self.add(branch)
+
+            self.sync_annotations_to_github_prs()
+
+        self.__git.checkout(f'PR_{pr.number}')
+        print(fmt(f"Pull request #{pr.number} checked out at local branch PR_{pr.number}"))
+
+    def get_path(self, remote: str, last_branch: str) -> List[str]:
+        def get_parent_remote_branch(branch: str) -> str:
+            checked: Dict[int, str] = {}
+            base: List[str] = self.__git.get_stripped_remote_branches(remote)
+            for item in path:
+                base.remove(item)
+
+            for b in base:
+                common_commit_hash: str = self.__git.popen_git("merge-base", '/'.join([remote, b]), '/'.join([remote, branch])).rstrip()
+                commit_timestamp: int = int(self.__git.get_commit_timestamp(common_commit_hash))
+                checked[commit_timestamp] = b
+
+            parent: str = checked[max(checked.keys())]
+            branch_first_commit_time: int = int(self.__git.get_first_reflog_entry_timestamp(remote, branch))
+
+            while int(self.__git.get_first_reflog_entry_timestamp(remote, parent)) > branch_first_commit_time:
+                del checked[max(checked.keys())]
+                parent = checked[max(checked.keys())]
+            return parent  # the youngest common commit found is considered to be from a parent branch
+            # but there is case unhadled when 2 different branches has the youngest common commit (which branch to take?)
+
+        path: List[str] = []
+        current_branch: str = last_branch
+
+        while current_branch not in self.__roots:
+            path.append(current_branch)
+            current_branch = get_parent_remote_branch(current_branch)
+
+        path.append(current_branch)
+        return path
+
     def retarget_github_pr(self, head: str) -> None:
         org: str
         repo: str
@@ -2069,18 +2148,32 @@ def launch(orig_args: List[str]) -> None:
             if dest != cb:
                 git.checkout(dest)
         elif cmd == "github":
-            github_allowed_subcommands = "anno-prs|create-pr|retarget-pr"
-            param = check_required_param(parse_options(args, "", ["draft"]), github_allowed_subcommands)
+            github_allowed_subcommands = "anno-prs|create-pr|retarget-pr|checkout-pr"
+            list_args = parse_options(args) if args[0] == 'checkout-pr' else check_required_param(parse_options(args, "", ["draft"]), github_allowed_subcommands)
+            if not list_args:
+                raise MacheteException(f"`git machete github` expects argument(s): {github_allowed_subcommands}")
+
+            param = list_args[0]
             machete_client.read_definition_file()
             if param == "anno-prs":
                 machete_client.sync_annotations_to_github_prs()
             elif param == "create-pr":
+                check_required_param(parse_options(args, "", ["draft"]), github_allowed_subcommands)
                 cb = git.get_current_branch()
                 machete_client.create_github_pr(cb, draft=cli_opts.opt_draft)
             elif param == "retarget-pr":
                 cb = git.get_current_branch()
                 machete_client.expect_in_managed_branches(cb)
                 machete_client.retarget_github_pr(cb)
+            elif param == "checkout-pr":
+                if len(list_args) == 1:
+                    raise MacheteException(
+                        "Argument to `git machete github checkout-pr` cannot be empty; expected PR number.")
+                try:
+                    pr_no: int = int(list_args[1])
+                except ValueError:
+                    raise MacheteException("PR number is not integer value!")
+                machete_client.checkout_github_pr(pr_no)
             else:
                 raise MacheteException(f"`github` requires a subcommand: one of `{github_allowed_subcommands}`")
         elif cmd == "help":

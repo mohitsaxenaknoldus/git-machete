@@ -1,3 +1,5 @@
+.. _delete-unmanaged:
+
 delete-unmanaged
 -----------
 Usage:

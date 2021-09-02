@@ -1,3 +1,5 @@
+.. _fork-point:
+
 fork-point
 -----------
 Usage:

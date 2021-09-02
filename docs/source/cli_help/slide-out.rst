@@ -1,3 +1,5 @@
+.. _slide-out:
+
 slide-out
 ---------
 Usage:

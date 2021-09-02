@@ -1,3 +1,5 @@
+.. _is-managed:
+
 is-managed
 ---------
 Usage:

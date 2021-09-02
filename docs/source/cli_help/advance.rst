@@ -1,3 +1,5 @@
+.. _advance:
+
 advance
 -----------
 Usage:

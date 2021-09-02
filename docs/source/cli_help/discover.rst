@@ -1,3 +1,5 @@
+.. _discover:
+
 discover
 -----------
 Usage:

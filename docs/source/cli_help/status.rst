@@ -1,3 +1,5 @@
+.. _status:
+
 status
 ---------
 Usage:

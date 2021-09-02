@@ -1,3 +1,5 @@
+.. _reapply:
+
 reapply
 ---------
 Usage:

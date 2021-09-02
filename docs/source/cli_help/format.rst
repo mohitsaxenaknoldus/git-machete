@@ -1,3 +1,5 @@
+.. _format:
+
 format
 -----------
 Note: there is no 'git machete format' command as such; 'format' is just a topic of 'git machete help'.

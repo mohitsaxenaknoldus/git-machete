@@ -1,3 +1,5 @@
+.. _squash:
+
 squash
 ---------
 Usage:

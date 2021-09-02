@@ -1,3 +1,5 @@
+.. _traverse:
+
 traverse
 ---------
 Usage:

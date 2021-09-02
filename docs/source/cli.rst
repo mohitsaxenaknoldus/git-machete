@@ -38,81 +38,34 @@ git-machete commands:
 
 To get help via CLI run:
 
+.. code-block:: shell
+
     $ git-machete help
     $ git-machete help go
     $ git-machete go --help
 
-.. _add:
 .. include:: cli_help/add.rst
-
-.. _advance:
 .. include:: cli_help/advance.rst
-
-.. _anno:
 .. include:: cli_help/anno.rst
-
-.. _delete-unmanaged:
 .. include:: cli_help/delete-unmanaged.rst
-
-.. _diff:
 .. include:: cli_help/diff.rst
-
-.. _discover:
 .. include:: cli_help/discover.rst
-
-.. _edit:
 .. include:: cli_help/edit.rst
-
-.. _file:
 .. include:: cli_help/file.rst
-
-.. _fork-point:
 .. include:: cli_help/fork-point.rst
-
-.. _format:
 .. include:: cli_help/format.rst
-
-.. _github:
 .. include:: cli_help/github.rst
-
-.. _go:
 .. include:: cli_help/go.rst
-
-.. _help:
 .. include:: cli_help/help.rst
-
-.. _hooks:
 .. include:: cli_help/hooks.rst
-
-.. _is-managed:
 .. include:: cli_help/is-managed.rst
-
-.. _list:
 .. include:: cli_help/list.rst
-
-.. _log:
 .. include:: cli_help/log.rst
-
-.. _reapply:
 .. include:: cli_help/reapply.rst
-
-.. _show:
 .. include:: cli_help/show.rst
-
-.. _slide-out:
 .. include:: cli_help/slide-out.rst
-
-.. _squash:
 .. include:: cli_help/squash.rst
-
-.. _status:
 .. include:: cli_help/status.rst
-
-.. _traverse:
 .. include:: cli_help/traverse.rst
-
-.. _update:
 .. include:: cli_help/update.rst
-
-.. _version:
 .. include:: cli_help/version.rst

@@ -1,6 +1,6 @@
 .. _completion:
 
-Installing git-machete command line completion
+Installing git machete command line completion
 ==============================================
 
 Bash:

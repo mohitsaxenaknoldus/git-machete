@@ -36,7 +36,7 @@ Also, :bash:`reapply`, :bash:`slide-out`, :bash:`squash`, and :bash:`update` all
 :bash:`git machete fork-point` is different (and more powerful) than :bash:`git merge-base --fork-point`,
 since the latter takes into account only the reflog of the one provided upstream branch,
 while the former scans reflogs of all local branches and their remote tracking branches.
-This makes git-machete's :bash:`fork-point` more resilient to modifications of the tree definition which change the upstreams of branches.
+This makes git machete's :bash:`fork-point` more resilient to modifications of the tree definition which change the upstreams of branches.
 
 
 With :bash:`--override-to=<revision>`, sets up a fork point override for <branch>.

@@ -4,7 +4,7 @@
 Learning Materials
 ==================
 
-**git-machete** is a handy tool for managing your git repositories and to make it easier to use author of the tool Paweł Lipski has prepared series of articles on various git-machete related topics. Check them out for more information on how to use git-machete or how to manage your own programming project using Docker and CI services:
+**git machete** is a handy tool for managing your git repositories and to make it easier to use author of the tool Paweł Lipski has prepared series of articles on various git machete related topics. Check them out for more information on how to use git machete or how to manage your own programming project using Docker and CI services:
 
     * `Make your way through the git (rebase) jungle with Git Machete <https://medium.com/virtuslab/make-your-way-through-the-git-rebase-jungle-with-git-machete-e2ed4dbacd02>`_;
     * `git machete strikes again! Traverse the git (rebase) jungle even faster <https://medium.com/virtuslab/git-machete-strikes-again-traverse-the-git-rebase-jungle-even-faster-with-v2-0-f43ebaf8abb0>`_;

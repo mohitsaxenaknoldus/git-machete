@@ -1,9 +1,11 @@
 .. _is-managed:
 
 is-managed
----------
+----------
 Usage:
-::
+
+.. code-block:: shell
+
     git machete is-managed [<branch>]
 
 Returns with zero exit code if the given branch (or current branch, if none specified) is managed by git-machete (i.e. listed in .git/machete).

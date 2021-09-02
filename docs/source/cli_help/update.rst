@@ -1,10 +1,12 @@
 .. _update:
 
 update
----------
+------
 Usage:
-::
-    git machete update [-f\|--fork-point=] [-M\|--merge] [-n\|--no-edit-merge\|--no-interactive-rebase]
+
+.. code-block:: shell
+
+    git machete update [-f|--fork-point=] [-M|--merge] [-n|--no-edit-merge|--no-interactive-rebase]
 
 Synchronizes the current branch with its upstream (parent) branch either by rebase (default) or by merge (if `--merge` option passed).
 

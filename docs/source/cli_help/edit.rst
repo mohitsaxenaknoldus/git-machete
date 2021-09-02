@@ -1,9 +1,11 @@
 .. _edit:
 
 edit
------------
+----
 Usage:
-::
+
+.. code-block:: shell
+
     git machete e[dit]
 
 Opens an editor and lets you edit the definition file manually.

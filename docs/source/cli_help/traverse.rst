@@ -1,13 +1,13 @@
 .. _traverse:
 
 traverse
----------
+--------
 Usage:
 ::
-    git machete traverse [-F\|--fetch] [-l\|--list-commits] [-M\|--merge]
-                               [-n\|--no-edit-merge\|--no-interactive-rebase] [--no-detect-squash-merges]
-                               [--[no-]push] [--[no-]push-untracked]
-                               [--return-to=WHERE] [--start-from=WHERE] [-w\|--whole] [-W] [-y\|--yes]
+    git machete traverse [-F|--fetch] [-l|--list-commits] [-M|--merge]
+                         [-n|--no-edit-merge|--no-interactive-rebase] [--no-detect-squash-merges]
+                         [--[no-]push] [--[no-]push-untracked]
+                         [--return-to=WHERE] [--start-from=WHERE] [-w|--whole] [-W] [-y|--yes]
 
 Traverses the branch dependency tree in pre-order (i.e. simply in the order as they occur in the definition file) and for each branch:
 

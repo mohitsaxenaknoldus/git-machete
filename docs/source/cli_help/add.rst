@@ -1,10 +1,12 @@
 .. _add:
 
 add
------------
+---
 Usage:
-::
-    git machete add [-o\|--onto=<target-upstream-branch>] [-R\|--as-root] [-y\|--yes] [<branch>]
+
+.. code-block:: shell
+
+    git machete add [-o|--onto=<target-upstream-branch>] [-R|--as-root] [-y|--yes] [<branch>]
 
 Adds the provided <branch> (or the current branch, if none specified) to the definition file.
 If <branch> is provided but no local branch with the given name exists:

@@ -1,9 +1,11 @@
 .. _anno:
 
 anno
------------
+----
 Usage:
-::
+
+.. code-block:: shell
+
     git machete anno [-b|--branch=<branch>] [<annotation text>]
     git machete anno -H|--sync-github-prs
 

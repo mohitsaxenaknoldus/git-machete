@@ -1,7 +1,7 @@
 .. _cli:
 
 Command Line Interface
-=======================================
+======================
 
 .. highlight:: console
 

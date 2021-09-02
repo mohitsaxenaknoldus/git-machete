@@ -1,7 +1,7 @@
 .. _completion:
 
 Installing git-machete command line completion
-=======================================
+==============================================
 
 Bash:
     * Mac (via Homebrew)

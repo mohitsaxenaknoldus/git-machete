@@ -1,10 +1,12 @@
 .. _status:
 
 status
----------
+------
 Usage:
-::
-    git machete s[tatus] [--color=WHEN] [-l\|--list-commits] [-L\|--list-commits-with-hashes] [--no-detect-squash-merges]
+
+.. code-block:: shell
+
+    git machete s[tatus] [--color=WHEN] [-l|--list-commits] [-L|--list-commits-with-hashes] [--no-detect-squash-merges]
 
 Displays a tree-shaped status of the branches listed in the definition file.
 

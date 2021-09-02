@@ -1,7 +1,7 @@
 .. _hooks:
 
 hooks
----------
+-----
 As with the standard git hooks, git-machete looks for its own specific hooks in `$GIT_DIR/hooks/*` (or `$(git config core.hooksPath)/*`, if set).
 
 Note: `hooks` is not a command as such, just a help topic (there is no `git machete hooks` command).

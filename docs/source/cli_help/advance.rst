@@ -1,10 +1,12 @@
 .. _advance:
 
 advance
------------
+-------
 Usage:
-::
-    git machete advance [-y\|--yes]
+
+.. code-block:: shell
+
+    git machete advance [-y|--yes]
 
 Fast forwards (as in `git merge --ff-only`) the current branch `C` to match its downstream `D`,
 and subsequently slides out `D`. Both steps require manual confirmation unless `-y`/`--yes` is provided.

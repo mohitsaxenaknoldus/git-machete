@@ -2,7 +2,7 @@
 .. _learning_materials:
 
 Learning Materials
-=======================================
+==================
 
 **git-machete** is a handy tool for managing your git repositories and to make it easier to use author of the tool Paweł Lipski has prepared series of articles on various git-machete related topics. Check them out for more information on how to use git-machete or how to manage your own programming project using Docker and CI services:
 

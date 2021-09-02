@@ -1,9 +1,11 @@
 .. _list:
 
 list
----------
+----
 Usage:
-::
+
+.. code-block:: shell
+
     git machete list <category>
 where <category> is one of: `addable`, `managed`, `slidable`, `slidable-after <branch>`, `unmanaged`, `with-overridden-fork-point`.
 

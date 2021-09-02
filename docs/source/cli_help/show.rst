@@ -1,9 +1,11 @@
 .. _show:
 
 show
----------
+----
 Usage:
-::
+
+.. code-block:: shell
+
     git machete show <direction> [<branch>]<
 where <direction> is one of: `c[urrent]`, `d[own]`, `f[irst]`, `l[ast]`, `n[ext]`, `p[rev]`, `r[oot]`, `u[p]`
 displayed relative to given <branch>, or the current checked out branch if <branch> is unspecified.

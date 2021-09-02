@@ -1,9 +1,11 @@
 .. _github:
 
 github
------------
+------
 Usage:
-::
+
+.. code-block:: shell
+
     git machete github <subcommand>
 where **<subcommand>** is one of: `anno-prs`, `create-pr`, `retarget-pr`.
 

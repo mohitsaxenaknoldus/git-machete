@@ -1,10 +1,12 @@
 .. _reapply:
 
 reapply
----------
+-------
 Usage:
-::
-    git machete reapply [-f\|--fork-point=<fork-point-commit>]
+
+.. code-block:: shell
+
+    git machete reapply [-f|--fork-point=<fork-point-commit>]
 
 Interactively rebase the current branch on the top of its computed fork point.
 The chunk of the history to be rebased starts at the automatically computed fork point of the current branch by default, but can also be set explicitly by `--fork-point`.

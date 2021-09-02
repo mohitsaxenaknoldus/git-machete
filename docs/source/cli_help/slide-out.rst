@@ -3,8 +3,10 @@
 slide-out
 ---------
 Usage:
-::
-    git machete slide-out [-d\|--down-fork-point=<down-fork-point-commit>] [-M\|--merge] [-n\|--no-edit-merge|--no-interactive-rebase] <branch> [<branch> [<branch> ...]]
+
+.. code-block:: shell
+
+    git machete slide-out [-d|--down-fork-point=<down-fork-point-commit>] [-M|--merge] [-n|--no-edit-merge|--no-interactive-rebase] <branch> [<branch> [<branch> ...]]
 
 Removes the given branch (or multiple branches) from the branch tree definition.
 Then synchronizes the downstream (child) branches of the last specified branch on the top of the upstream (parent) branch of the first specified branch.

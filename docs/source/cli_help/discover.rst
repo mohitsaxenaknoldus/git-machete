@@ -1,9 +1,11 @@
 .. _discover:
 
 discover
------------
+--------
 Usage:
-::
+
+.. code-block:: shell
+
     git machete discover [-C|--checked-out-since=<date>] [-l|--list-commits] [-r|--roots=<branch1>,<branch2>,...] [-y|--yes]
 
 Discovers and displays tree of branch dependencies using a heuristic based on reflogs and asks whether to overwrite the existing definition file with the new discovered tree.

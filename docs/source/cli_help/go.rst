@@ -1,9 +1,11 @@
 .. _go:
 
 go
----------
+--
 Usage:
-::
+
+.. code-block:: shell
+
     git machete g[o] <direction>
 where <direction> is one of: `d[own]`, `f[irst]`, `l[ast]`, `n[ext]`, `p[rev]`, `r[oot]`, `u[p]`
 

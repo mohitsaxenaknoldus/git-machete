@@ -1,11 +1,13 @@
 .. _fork-point:
 
 fork-point
------------
+----------
 Usage:
-::
+
+.. code-block:: shell
+
   git machete fork-point [--inferred] [<branch>]
-  git machete fork-point --override-to=<revision>\|--override-to-inferred|--override-to-parent [<branch>]
+  git machete fork-point --override-to=<revision>|--override-to-inferred|--override-to-parent [<branch>]
   git machete fork-point --unset-override [<branch>]
 
 Note: in all three forms, if no <branch> is specified, the currently checked out branch is assumed.

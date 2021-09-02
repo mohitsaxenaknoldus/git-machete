@@ -25,14 +25,14 @@ author = 'Paweł Lipski'
 # The full version, including alpha/beta/rc tags
 
 
-def get_last_version_from_release_note():
+def get_last_version_from_release_notes():
     with open("../../RELEASE_NOTES.md") as file:
         text = file.read()
     version_pattern = re.compile(r"[0-9]\.[0-9]\.[0-9]")
     return version_pattern.search(text).group()
 
 
-release = get_last_version_from_release_note()
+release = get_last_version_from_release_notes()
 
 # -- General configuration ---------------------------------------------------
 
